@@ -1,0 +1,653 @@
+:root {
+  --backgroundColor: #FFFFFF;
+  --accentColor: #60A5FA;
+  --accentfontColor: rgba(55, 65, 81, 0.7);
+  --alertColor: #ACDBDB;
+  --fontPrimary: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  --footer-sitemap-bg: #1E293B;
+  --fontSecondary: "Merriweather", Georgia, serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --secondaryColour: #60A5FA;
+  --bg-mobile: #FFFFFF;
+  --bg-tablet: #F5F7FA;
+  --bg-desktop: #F8FAFC;
+  --font-light: #FFFFFF;
+  --font-dark: #0F172A;
+  --fs-base: clamp(0.98rem, 0.35vw + 0.9rem, 1.05rem);
+  --fs-sm: clamp(0.88rem, 0.25vw + 0.8rem, 0.95rem);
+  --fs-lg: clamp(1.05rem, 0.5vw + 0.95rem, 1.2rem);
+  --fs-xl: clamp(1.5rem, 1.2vw + 1.2rem, 2rem);
+  --fs-xxl: clamp(2rem, 3.2vw + 1.2rem, 3.75rem);
+  --track-tight: -0.01em;
+  --track-tighter: -0.02em;
+  --track-wide: 0.02em;
+  --gutter: clamp(16px, 4vw, 72px);
+  --container-max: 72rem;
+}
+
+/* Global fix */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--fontPrimary);
+  color: var(--font-dark);
+  background-color: var(--backgroundColor);
+  margin: 0;
+  overflow-x: visible;
+}
+
+.header-logo {
+  width: 55%;  
+  height: auto;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+}
+
+img { max-width: 100%; height: auto; }
+
+.link-resume {
+    font-weight: bold;
+    background-color: var(--accentColor);
+    color: white;
+    border: none; 
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+
+.link-resume:hover {
+  background-color: #3B82F6; font-weight: bold; 
+}
+
+/* LinkedIn Button Styling */
+.linkedin-button {
+    display: inline-flex; /* Aligns the icon and text */
+    align-items: center;  /* Centers the content vertically */
+    font-weight: bold;
+    background-color: var(--accentColor);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    gap: 8px;  /* Space between the icon and text */
+}
+
+.linkedin-button i {
+    font-size: 24px;  /* Icon size */
+    color: white;     /* Icon color */
+}
+
+.linkedin-button:hover {
+  background-color: #3B82F6;
+  font-weight: bold;
+}
+
+.linkedin-button:active {
+  transform: scale(0.98);  /* Slight scale effect on click */
+}
+
+.linkedin-button span {
+  margin-left: 8px;  /* Adds spacing between the icon and text */
+}
+
+
+/* Hamburger menu */
+.hamburger {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1100; /* keep above nav and drawer */
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #ACDBDB;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Transform hamburger into X when open */
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(0, 8px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(0, -8px); }
+
+nav {
+  z-index: 900;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background-color: #F3F4F6;
+  gap: 8px;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 14px 28px;
+  color: var(--font-dark);
+  font-weight: bold;
+  border-radius: 6px;
+  display: block;
+  background-color: transparent;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+/* Ensure hover works with higher specificity and focus */
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  background-color: var(--alertColor);
+  color: var(--font-dark);
+}
+
+#nav-menu {
+  display: none;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+#nav-menu.active {
+  display: flex;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  color: var(--font-dark);
+  padding: 2rem 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero > * { min-width: 0; }
+.hero p, .hero h2 { overflow-wrap: anywhere; }
+
+#skill-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.skill {
+  background: #FFFFFF;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #DADCE0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: var(--accentColor);
+}
+
+
+/* === Skill Icon Animations === */
+.skill i {
+  font-size: 28px;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* Bounce + Glow on Hover */
+.skill:hover i {
+  transform: translateY(-6px) scale(1.1);
+  color: #3B82F6; /* accent blue */
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
+}
+
+/* Subtle card lift on hover */
+.skill {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.skill:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fontSecondary);
+  font-weight: var(--weight-bold);
+  line-height: 1.25;
+  letter-spacing: var(--track-tight);
+  color: var(--font-dark);
+}
+
+.cta-button, button {
+  background-color: var(--accentColor);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.cta-button:hover { 
+  background-color: #3B82F6; 
+  font-weight: bold; }
+
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  body { background-color: var(--bg-tablet); }
+
+    .header-logo {
+    width: 26%
+  }
+
+  .hero {
+    background-color: #3B82F6;
+    color: #fff;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: left;
+    background-size: contain;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    padding-inline: var(--gutter);
+  }
+
+
+
+  .hero img { 
+    max-width: 60%; height: auto; 
+  }
+
+
+  .hero .cta-button { 
+    margin-top: 1rem; 
+  }
+
+  nav {
+    position: relative;           /* in-flow (not fixed) */
+    z-index: 900;
+    width: 100%;
+    padding: 12px var(--gutter) 30px;/* room for hamburger */
+    background: transparent;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: transparent;
+    gap: 4px;
+    padding: 8px 0;
+    margin: 0;
+  }
+
+
+  #skill-list { grid-template-columns: repeat(2, 1fr); }
+
+  /* off-canvas panel for the nav menu */
+  #nav-menu {
+    position: static;
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    transition: transform .3s ease;
+    display: none;                 /* override base 'display:none' */
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1000;
+  }
+
+  /* slide in when active */
+#nav-menu.active { display: flex; }
+  
+  nav ul li a {
+    background: transparent;
+    color: var(--font-dark);
+    padding: 10px 16px;    
+  }
+
+
+  .hamburger {
+    position: fixed; 
+    display: flex !important;
+    z-index: 1100;
+  }
+}
+
+
+/* Round LinkedIn Icon in Side Menu (aligned) */
+.linkedin-round {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(96, 165, 250, 0.3);
+  color: #0F172A;
+  font-size: 22px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: 8px;
+  margin-left: 12px; /* pushes icon slightly inward to align with menu */
+}
+
+.linkedin-round:hover {
+  background-color: rgba(255, 255, 255, 0.65); /* matches side menu tone */
+  color: #3B82F6;
+  transform: scale(1.05);
+  backdrop-filter: blur(6px);
+}
+
+
+
+/* Round GitHub Icon in Side Menu (aligned) */
+.git-round {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(96, 165, 250, 0.3);
+  color: #0F172A;
+  font-size: 22px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: 8px;
+  margin-left: 12px; /* pushes icon slightly inward to align with menu */
+}
+
+.git-round:hover {
+  background-color: rgba(255, 255, 255, 0.65); /* matches side menu tone */
+  color: #3B82F6;
+  transform: scale(1.05);
+  backdrop-filter: blur(6px);
+}
+
+
+
+
+/* === Footer Sitemap Section === */
+.footer-sitemap {
+  background-color: var(--footer-sitemap-bg);
+  padding: 30px 0;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.footer-sitemap menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-sitemap a {
+  color: var(--font-light);
+  font-weight: bold;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-sitemap a:hover {
+  opacity: 0.7;
+}
+
+
+
+
+
+
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body { background-color: var(--bg-desktop); }
+
+.header-logo {
+    width: 23%;
+  }
+
+  .hero img {
+    max-width: 85%;
+    height: auto;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 240px;
+    padding: 280px 24px 16px;
+    background: rgba(255, 255, 255, 0.65); /* transparent + glass effect */
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  #nav-menu {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    width: 100%;
+    transform: none;
+  }
+
+
+  nav ul {
+    flex-direction: column;
+    justify-content: flex-start;
+    background: transparent;
+    width: 100%;
+  }
+
+  #skill-list { grid-template-columns: repeat(3, 1fr); }
+
+  .skill {
+    flex: 1 1 200px;
+    max-width: 220px;
+  }
+
+  .hamburger { display: none !important; }
+}
+
+/* === Image Slider Section (circular) === */
+.image-slider {
+  width: 100%;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.slider-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;              /* so it can scroll infinitely */
+  animation: scrollImages 24s linear infinite;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* base image style */
+.slide img {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  border-radius: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(3px);
+}
+
+/* server double size */
+.slide img[alt="Server"] {
+  width: 420px;
+  height: 420px;
+}
+
+/* hover */
+.slide img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* keyframes for endless loop */
+@keyframes scrollImages {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* move left by half the track (4 images) so the duplicate set lines up */
+    transform: translateX(-50%);
+  }
+}
+
+
+
+@media (max-width: 1023px) {
+  .hero { padding-inline: var(--gutter); box-sizing: border-box; }
+}
+
+
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.skill i {
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+
+
+/* === Accordion (Dropdown) Styles === */
+.accordion {
+  margin-top: 1.5rem;
+  /* border-top: 2px solid var(--accentColor); */
+}
+
+/* Add spacing between accordion boxes */
+.accordion-header {
+  margin-top: 1rem; /* adds white space before each header */
+}
+
+/* optional: remove margin before the first one */
+.accordion-header:first-child {
+  margin-top: 0;
+}
+
+.accordion-header {
+  width: 100%;
+  background: var(--backgroundColor);
+  color: var(--font-dark);
+  border: none;
+  outline: none;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  border-radius: 6px 6px 0 0 ;
+}
+
+.accordion-header:hover {
+  background-color: #F9FAFB;
+}
+
+.accordion-header i {
+  transition: transform 0.3s ease;
+}
+
+/* Rotate caret when open */
+.accordion-header.active i {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--backgroundColor);
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 1.25rem;
+  border-bottom: 0.25px solid var(--accentColor);
+  border-radius: 0 0 6px 6px;
+}
+
+.accordion-content p,
+.accordion-content ul {
+  margin: 1rem 0;
+}
+
+.accordion-content.open {
+  padding: 1rem 1.25rem;
+  max-height: 800px; /* large enough for content */
+}
+
+
+
+/* control of margin / padding of footer */
+
+footer {
+  margin-top: 10px; /* Space between the body and footer */
+  padding-top: 20px; /* Space inside the footer */
+}
+
+
+
+
+
